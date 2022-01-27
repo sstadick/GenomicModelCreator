@@ -285,6 +285,9 @@ if os.path.isdir(options.fastaFile):
 	if options.fastaFile[-1] != '/':
 		options.fastaFile += '/'
 	fileList = glob.glob(options.fastaFile + '*.fasta')
+elif options.fastaFile.endswith(".txt"):
+	with open(options.fastaFile, 'r') as in_fh:
+		fileList = [file.rstrip('\n') for file in in_fh]
 else:
 	fileList = [options.fastaFile]
 
